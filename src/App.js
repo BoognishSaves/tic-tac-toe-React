@@ -17,6 +17,7 @@ function App() {
 
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xPlaying, setXPlaying] = useState(true);
+  const [scores, setScores] = useState({xScore: 0, yScore: 0})
 
   const handleBoxClick = (boxIdx) => {
     const updatedBoard = board.map((value, idx) => {
@@ -27,7 +28,21 @@ function App() {
       }
     })
 
-    checkWinner(updatedBoard);
+    const winner = checkWinner(updatedBoard);
+
+    if (winner) {
+      if(winner === "0") {
+        let {oScore} = scores;
+        oScore += 1
+        setScores({...scores, oScore})
+      } else {
+        let {xScore} = scores;
+        xScore += 1
+        setScores({...scores, xScore})
+      }
+    }
+
+    console.log(scores);
 
     setBoard(updatedBoard);
 
