@@ -2,9 +2,9 @@ import React from 'react'
 
 import "../components/Box.css"
 
-export const Box = () => {
-    
+export const Box = ({value, onClick}) => {
+  const style = value === "x" ? "box x" : "box o";
   return (
-    <button className="box">x</button>
+    <button className={style} onClick={onClick}>{value}</button>
   )
 }
